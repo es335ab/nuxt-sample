@@ -1,23 +1,26 @@
 <template>
   <div class="container">
+
     <div v-for="user in userList" :key="user.id" style="text-align: left;">
       <p>id：{{ user.id }}</p>
       <p>名前：{{ user.name }}</p>
       <hr />
     </div>
-
-
-
     <button @click="addUser">ユーザー追加</button>
+    <div>
+      ユーザー人数: {{ userListLength }}
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('user', ['userList'])
+    ...mapState('user', ['userList']),
+    ...mapGetters('user', ['userListLength'])
   },
   methods: {
     addUser() {
